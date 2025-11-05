@@ -1,5 +1,6 @@
 namespace SupplierModels
 {
+    //Suplier Model
     public class Supplier
     {
         public int Id { get; set; }

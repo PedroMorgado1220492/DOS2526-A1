@@ -12,8 +12,8 @@ namespace SuppliersAPI.Controllers
     // Para exemplo simples: usar uma lista em memória
              private static readonly List<Supplier> _suppliers = new()
              {
-                 new Supplier { Id = 1, Name = "ISEP1 Ltda" },
-                 new Supplier { Id = 2, Name = "ISEP2 Corp" }
+                 new Supplier { Id = 1, Name = "ISEP1 Corp" },
+                 new Supplier { Id = 2, Name = "ISEP2 Ltda" }
              };
 
              [HttpGet]
