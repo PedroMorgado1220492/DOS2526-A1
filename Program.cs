@@ -1,15 +1,15 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// (Opcional) configurações, serviços
-
+// Adiciona serviços ao container
 builder.Services.AddControllers();
-// Swagger / OpenAPI (recomendado para testes)
+
+// Swagger / OpenAPI (para testar endpoints no navegador)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Middleware do pipeline
+// Middleware (pipeline de execução)
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -17,10 +17,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection();  // opcional
-
+// app.UseHttpsRedirection(); // opcional
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllers();

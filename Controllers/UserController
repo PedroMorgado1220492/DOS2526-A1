@@ -75,5 +75,6 @@ namespace ProductsAPI.Controllers
             _users.Remove(existing);
             return NoContent();
         }
+        private static List<User> Users = new List<User>();
     }
 }
