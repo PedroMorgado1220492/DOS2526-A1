@@ -69,3 +69,14 @@ C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\refint\ProductsAPI.d
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.pdb
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.genruntimeconfig.cache
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ref\ProductsAPI.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll

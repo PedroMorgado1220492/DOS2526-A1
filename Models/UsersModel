@@ -11,5 +11,7 @@ namespace ProductsAPI.Models
         public string Fullname { get; set; }
         public string Role { get; set; }
 
+        public ICollection<SalesModel> Sales { get; set; } = new List<SalesModel>();
+
     }
 }

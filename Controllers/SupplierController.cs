@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using SupplierModels;
-using System.Collections.Generic;
-using System.Linq;
+using ProductsAPI.SupplierModel;
+
 
 namespace SuppliersAPI.Controllers
 {
@@ -10,20 +9,20 @@ namespace SuppliersAPI.Controllers
     public class SupplierController : ControllerBase
     {
     // Para exemplo simples: usar uma lista em memória
-             private static readonly List<Supplier> _suppliers = new()
+             private static readonly List<SupplierModel> _suppliers = new()
              {
-                 new Supplier { Id = 1, Name = "ISEP1 Corp" },
-                 new Supplier { Id = 2, Name = "ISEP2 Ltda" }
+                 new SupplierModel { Id = 1, Name = "ISEP1 Corp" },
+                 new SupplierModel { Id = 2, Name = "ISEP2 Ltda" }
              };
 
              [HttpGet]
-             public ActionResult<IEnumerable<Supplier>> GetSuppliers()
+             public ActionResult<IEnumerable<SupplierModel>> GetSuppliers()
              {
                  return Ok(_suppliers);
              }
 
              [HttpGet("{id}")]
-             public ActionResult<Supplier> GetSupplier(int id)
+             public ActionResult<SupplierModel> GetSupplier(int id)
              {
                  var supplier = _suppliers.FirstOrDefault(s => s.Id == id);
                  if (supplier == null)
@@ -32,7 +31,7 @@ namespace SuppliersAPI.Controllers
              }
 
              [HttpPost]
-             public ActionResult<Supplier> CreateSupplier(Supplier supplier)
+             public ActionResult<SupplierModel> CreateSupplier(SupplierModel supplier)
              {
                  // definir novo Id (simples)
                  supplier.Id = _suppliers.Any() ? _suppliers.Max(s => s.Id) + 1 : 1;
@@ -42,7 +41,7 @@ namespace SuppliersAPI.Controllers
              }
 
              [HttpPut("{id}")]
-             public IActionResult UpdateSupplier(int id, Supplier updatedSupplier)
+             public IActionResult UpdateSupplier(int id, SupplierModel updatedSupplier)
              {
                  var existing = _suppliers.FirstOrDefault(s => s.Id == id);
                  if (existing == null)
@@ -52,16 +51,17 @@ namespace SuppliersAPI.Controllers
                  return NoContent();  // 204
              }
 
-             [HttpDelete("{id}")]
-             public IActionResult DeleteSupplier(int id)
-             {
-                 var existing = _suppliers.FirstOrDefault(s => s.Id == id);
-                 if (existing == null)
-                     return NotFound();
+        [HttpDelete("{id}")]
+        public IActionResult DeleteSupplier(int id)
+        {
+            var existing = _suppliers.FirstOrDefault(s => s.Id == id);
+            if (existing == null)
+                return NotFound();
 
-                 _suppliers.Remove(existing);
-                 return NoContent();
-             }
+            _suppliers.Remove(existing);
+            return NoContent();
+        }
+             private static List<SupplierModel> Suppliers = new List<SupplierModel>();
          
     }
 }

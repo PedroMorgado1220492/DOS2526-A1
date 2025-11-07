@@ -65,5 +65,6 @@ namespace ProductsAPI.Controllers
             sales.Remove(sale);
             return NoContent();
         }
+        private static List<Sale> Sales = new List<Sale>();
     }
 }
