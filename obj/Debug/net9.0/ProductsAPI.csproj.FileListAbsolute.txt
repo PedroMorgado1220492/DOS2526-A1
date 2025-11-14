@@ -33,19 +33,6 @@ C:\Users\BrunoSantos\Desktop\Nova pasta\ProductsAPI\obj\Debug\net9.0\refint\Prod
 C:\Users\BrunoSantos\Desktop\Nova pasta\ProductsAPI\obj\Debug\net9.0\ProductsAPI.pdb
 C:\Users\BrunoSantos\Desktop\Nova pasta\ProductsAPI\obj\Debug\net9.0\ProductsAPI.genruntimeconfig.cache
 C:\Users\BrunoSantos\Desktop\Nova pasta\ProductsAPI\obj\Debug\net9.0\ref\ProductsAPI.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\appsettings.Development.json
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\appsettings.json
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.staticwebassets.endpoints.json
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.exe
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.deps.json
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.runtimeconfig.json
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.pdb
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.OpenApi.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.csproj.AssemblyReference.cache
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rpswa.dswa.cache.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.GeneratedMSBuildEditorConfig.editorconfig
@@ -55,6 +42,30 @@ C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.csproj.C
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.sourcelink.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\appsettings.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.staticwebassets.endpoints.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.exe
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.deps.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.runtimeconfig.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.pdb
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -69,14 +80,3 @@ C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\refint\ProductsAPI.d
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.pdb
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.genruntimeconfig.cache
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ref\ProductsAPI.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll

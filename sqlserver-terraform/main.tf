@@ -38,19 +38,19 @@ resource "docker_volume" "sql_data" {
 ########################################
 resource "docker_container" "sqlserver" {
   name  = "sqlserver"
-  image = "microsoft/mssql-server"
+  image = "mcr.microsoft.com/mssql/server:2022-latest"
 
   # Variáveis de ambiente obrigatórias
   env = [
     "ACCEPT_EULA=Y",
-    "SA_PASSWORD=Your_password123",  # TROCA ISTO
+    "SA_PASSWORD=Your_password123", 
     "MSSQL_PID=Express"
   ]
 
   # Mapeamento da porta SQL
   ports {
-    internal = 1433
-    external = 1433
+    internal = 1434
+    external = 1435
   }
 
   # Limite de memória (2GB)

@@ -10,18 +10,18 @@ namespace ProductsAPI.Controllers
     public class SalesController : ControllerBase
     {
         // Simulação de uma base de dados em memória
-        private static List<Sale> sales = new List<Sale>();
+        private static List<SalesModel> sales = new List<SalesModel>();
 
         // GET: api/sales
         [HttpGet]
-        public ActionResult<IEnumerable<Sale>> GetSales()
+        public ActionResult<IEnumerable<SalesModel>> GetSales()
         {
             return Ok(sales);
         }
 
         // GET: api/sales/{id}
         [HttpGet("{id}")]
-        public ActionResult<Sale> GetSale(int id)
+        public ActionResult<SalesModel> GetSale(int id)
         {
             var sale = sales.FirstOrDefault(s => s.Id == id);
             if (sale == null)
@@ -32,7 +32,7 @@ namespace ProductsAPI.Controllers
 
         // POST: api/sales
         [HttpPost]
-        public ActionResult<Sale> CreateSale([FromBody] Sale sale)
+        public ActionResult<SalesModel> CreateSale([FromBody] SalesModel sale)
         {
             sale.Id = sales.Count > 0 ? sales.Max(s => s.Id) + 1 : 1;
             sales.Add(sale);
@@ -41,7 +41,7 @@ namespace ProductsAPI.Controllers
 
         // PUT: api/sales/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateSale(int id, [FromBody] Sale updatedSale)
+        public ActionResult UpdateSale(int id, [FromBody] SalesModel updatedSale)
         {
             var sale = sales.FirstOrDefault(s => s.Id == id);
             if (sale == null)
@@ -65,6 +65,6 @@ namespace ProductsAPI.Controllers
             sales.Remove(sale);
             return NoContent();
         }
-        private static List<Sale> Sales = new List<Sale>();
+        private static List<SalesModel> Sales = new List<SalesModel>();
     }
 }

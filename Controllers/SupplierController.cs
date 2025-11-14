@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductsAPI.SupplierModel;
+using ProductsAPI.Models;
 
 
-namespace SuppliersAPI.Controllers
+namespace SupplierAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -62,6 +63,6 @@ namespace SuppliersAPI.Controllers
             return NoContent();
         }
              private static List<SupplierModel> Suppliers = new List<SupplierModel>();
-         
+        
     }
 }
