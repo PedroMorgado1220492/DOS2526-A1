@@ -63,9 +63,6 @@ namespace ProductsAPI.Controllers
             _products.Remove(existing);
             return NoContent();
         }
-        private static List<Product> Products = new List<Product>();
-    }
-
-
-    
+             private static List<Product> Products = new List<Product>(); 
+    } 
 }
