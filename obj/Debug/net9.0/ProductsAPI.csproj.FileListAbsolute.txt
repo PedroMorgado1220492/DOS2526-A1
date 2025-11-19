@@ -33,17 +33,27 @@ C:\Users\BrunoSantos\Desktop\Nova pasta\ProductsAPI\obj\Debug\net9.0\refint\Prod
 C:\Users\BrunoSantos\Desktop\Nova pasta\ProductsAPI\obj\Debug\net9.0\ProductsAPI.pdb
 C:\Users\BrunoSantos\Desktop\Nova pasta\ProductsAPI\obj\Debug\net9.0\ProductsAPI.genruntimeconfig.cache
 C:\Users\BrunoSantos\Desktop\Nova pasta\ProductsAPI\obj\Debug\net9.0\ref\ProductsAPI.dll
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.csproj.AssemblyReference.cache
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rpswa.dswa.cache.json
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.AssemblyInfoInputs.cache
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.AssemblyInfo.cs
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.csproj.CoreCompileInputs.cache
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.sourcelink.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\appsettings.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsController.Tests\obj\ProductsController.Tests.csproj.nuget.dgspec.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsController.Tests\obj\project.assets.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\SalesController.Test\obj\project.assets.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\SalesController.Test\obj\SalesController.Test.csproj.nuget.dgspec.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\SupplierController.Test\obj\project.assets.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\SupplierController.Test\obj\SupplierController.Test.csproj.nuget.dgspec.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\appsettings.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\ProductsAPI.deps.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\ProductsAPI.runtimeconfig.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\ProductsAPI.staticwebassets.endpoints.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\UserController.Tests.deps.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\UserController.Tests.runtimeconfig.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\UserController.Tests\obj\Debug\net9.0\UserController.Tests.sourcelink.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\UserController.Tests\obj\project.assets.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\bin\Debug\net9.0\UserController.Tests\obj\UserController.Tests.csproj.nuget.dgspec.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\obj\Debug\net9.0\UserController.Tests.sourcelink.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\obj\project.assets.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\UserController.Tests\obj\UserController.Tests.csproj.nuget.dgspec.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.staticwebassets.endpoints.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.exe
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\ProductsAPI.deps.json
@@ -66,6 +76,15 @@ C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Microsoft.OpenApi.dl
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.csproj.AssemblyReference.cache
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.AssemblyInfoInputs.cache
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.AssemblyInfo.cs
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.csproj.CoreCompileInputs.cache
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\ProductsAPI.sourcelink.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\gonca\Documents\GitHub\DOS2526-A1\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
