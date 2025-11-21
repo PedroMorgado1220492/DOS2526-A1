@@ -1,6 +1,3 @@
-########################################
-# Provider Docker
-########################################
 terraform {
   required_providers {
     docker = {
@@ -12,73 +9,49 @@ terraform {
 
 provider "docker" {}
 
-########################################
-# Rede Docker
-########################################
-resource "docker_network" "sql_network" {
-  name = "sqlserver_network"
+# ------------------------------
+#  SQL Server Image
+# ------------------------------
+resource "docker_image" "sqlserver" {
+  name = "mcr.microsoft.com/mssql/server:2022-latest"
 }
 
-########################################
-# Volume para armazenamento persistente
-########################################
+# ------------------------------
+#  Persistent Volume
+# ------------------------------
 resource "docker_volume" "sql_data" {
   name = "sqlserver_data"
-
-  # OPCIONAL: para mapear para uma pasta local, descomentar isto:
-  # driver_opts = {
-  #   type   = "none"
-  #   device = "/caminho/no/host/sql_data"
-  #   o      = "bind"
-  # }
 }
 
-########################################
-# Container SQL Server
-########################################
+# ------------------------------
+#  SQL Server Container
+# ------------------------------
 resource "docker_container" "sqlserver" {
   name  = "sqlserver"
-  image = "mcr.microsoft.com/mssql/server:2022-latest"
+  image = docker_image.sqlserver.name
 
-  # Variáveis de ambiente obrigatórias
   env = [
     "ACCEPT_EULA=Y",
-    "SA_PASSWORD=Your_password123", 
-    "MSSQL_PID=Express"
+    "MSSQL_PID=Developer",
+    "SA_PASSWORD=${var.sa_password}"
   ]
 
-  # Mapeamento da porta SQL
   ports {
-    internal = 1434
-    external = 1435
+    internal = 1433
+    external = 1433
   }
 
-  # Limite de memória (2GB)
-  memory = 2048
-
-  # Volume para armazenar os dados SQL
-  mounts {
-    target = "/var/opt/mssql"
-    source = docker_volume.sql_data.name
-    type   = "volume"
+  # Attach volume
+  volumes {
+    volume_name    = docker_volume.sql_data.name
+    container_path = "/var/opt/mssql"
   }
+}
 
-  networks_advanced {
-    name = docker_network.sql_network.name
-  }
-
-  # Healthcheck para garantir que o SQL está operacional
-  healthcheck {
-    test = [
-      "CMD",
-      "/opt/mssql-tools/bin/sqlcmd",
-      "-S", "localhost",
-      "-U", "sa",
-      "-P", "Your_password123",
-      "-Q", "SELECT 1"
-    ]
-    interval = "30s"
-    timeout  = "10s"
-    retries  = 3
-  }
+# ------------------------------
+#  Outputs
+# ------------------------------
+output "sql_connection_string" {
+  value     = "Server=localhost,1433;Database=master;User Id=sa;Password=${var.sa_password};TrustServerCertificate=True;"
+  sensitive = true
 }
