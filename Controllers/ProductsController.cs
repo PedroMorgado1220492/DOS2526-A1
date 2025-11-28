@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProductsAPI.Data;
 using ProductsAPI.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProductsAPI.Controllers
 {
@@ -9,60 +9,81 @@ namespace ProductsAPI.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        // Para exemplo simples: usar uma lista em memória
-        private static readonly List<Product> _products = new()
+        private readonly ApplicationDbContext _context;
+
+        public ProductsController(ApplicationDbContext context)
         {
-            new Product { Id = 1, Name = "Mouse", Price = 25.50M },
-            new Product { Id = 2, Name = "Teclado", Price = 45.20M }
-        };
+            _context = context;
+        }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetAll()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAll()
         {
-            return Ok(_products);
+            var products = await _context.Products
+                .Include(p => p.Supplier)
+                .ToListAsync();
+
+            return Ok(products);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Product> GetById(int id)
+        public async Task<ActionResult<Product>> GetById(int id)
         {
-            var prod = _products.FirstOrDefault(p => p.Id == id);
-            if (prod == null)
+            var product = await _context.Products
+                .Include(p => p.Supplier)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (product == null)
+            {
                 return NotFound();
-            return Ok(prod);
+            }
+
+            return Ok(product);
         }
 
         [HttpPost]
-        public ActionResult<Product> Create(Product product)
+        public async Task<ActionResult<Product>> Create(Product product)
         {
-            // definir novo Id (simples)
-            product.Id = _products.Any() ? _products.Max(p => p.Id) + 1 : 1;
-            _products.Add(product);
-            // retornamos 201 Created com localização
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Product product)
+        public async Task<IActionResult> Update(int id, Product product)
         {
-            var existing = _products.FirstOrDefault(p => p.Id == id);
+            if (id != product.Id)
+            {
+                return BadRequest();
+            }
+
+            var existing = await _context.Products.FindAsync(id);
             if (existing == null)
+            {
                 return NotFound();
+            }
 
             existing.Name = product.Name;
             existing.Price = product.Price;
-            return NoContent();  // 204
+            existing.SupplierId = product.SupplierId;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var existing = _products.FirstOrDefault(p => p.Id == id);
+            var existing = await _context.Products.FindAsync(id);
             if (existing == null)
+            {
                 return NotFound();
+            }
 
-            _products.Remove(existing);
+            _context.Products.Remove(existing);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
-             private static List<Product> Products = new List<Product>(); 
-    } 
+    }
 }

@@ -6,10 +6,10 @@ namespace ProductsAPI.Models
     public class UsersModel
     {
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string Fullname { get; set; }
-        public string Role { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Fullname { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
 
         public ICollection<SalesModel> Sales { get; set; } = new List<SalesModel>();
 
