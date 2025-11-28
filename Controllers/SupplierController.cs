@@ -1,68 +1,87 @@
 using Microsoft.AspNetCore.Mvc;
-using ProductsAPI.SupplierModel;
+using Microsoft.EntityFrameworkCore;
+using ProductsAPI.Data;
 using ProductsAPI.Models;
 
-
-namespace SupplierAPI.Controllers
+namespace ProductsAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class SupplierController : ControllerBase
     {
-    // Para exemplo simples: usar uma lista em memória
-             private static readonly List<SupplierModel> _suppliers = new()
-             {
-                 new SupplierModel { Id = 1, Name = "ISEP1 Corp" },
-                 new SupplierModel { Id = 2, Name = "ISEP2 Ltda" }
-             };
+        private readonly ApplicationDbContext _context;
 
-             [HttpGet]
-             public ActionResult<IEnumerable<SupplierModel>> GetSuppliers()
-             {
-                 return Ok(_suppliers);
-             }
-
-             [HttpGet("{id}")]
-             public ActionResult<SupplierModel> GetSupplier(int id)
-             {
-                 var supplier = _suppliers.FirstOrDefault(s => s.Id == id);
-                 if (supplier == null)
-                     return NotFound();
-                 return Ok(supplier);
-             }
-
-             [HttpPost]
-             public ActionResult<SupplierModel> CreateSupplier(SupplierModel supplier)
-             {
-                 // definir novo Id (simples)
-                 supplier.Id = _suppliers.Any() ? _suppliers.Max(s => s.Id) + 1 : 1;
-                 _suppliers.Add(supplier);
-                 // retornamos 201 Created com localização
-                 return CreatedAtAction(nameof(GetSupplier), new { id = supplier.Id }, supplier);
-             }
-
-             [HttpPut("{id}")]
-             public IActionResult UpdateSupplier(int id, SupplierModel updatedSupplier)
-             {
-                 var existing = _suppliers.FirstOrDefault(s => s.Id == id);
-                 if (existing == null)
-                     return NotFound();
-
-                 existing.Name = updatedSupplier.Name;
-                 return NoContent();  // 204
-             }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteSupplier(int id)
+        public SupplierController(ApplicationDbContext context)
         {
-            var existing = _suppliers.FirstOrDefault(s => s.Id == id);
-            if (existing == null)
-                return NotFound();
+            _context = context;
+        }
 
-            _suppliers.Remove(existing);
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SupplierModel>>> GetSuppliers()
+        {
+            var suppliers = await _context.Suppliers
+                .Include(s => s.Products)
+                .ToListAsync();
+
+            return Ok(suppliers);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SupplierModel>> GetSupplier(int id)
+        {
+            var supplier = await _context.Suppliers
+                .Include(s => s.Products)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (supplier == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(supplier);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<SupplierModel>> CreateSupplier(SupplierModel supplier)
+        {
+            _context.Suppliers.Add(supplier);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetSupplier), new { id = supplier.Id }, supplier);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSupplier(int id, SupplierModel updatedSupplier)
+        {
+            if (id != updatedSupplier.Id)
+            {
+                return BadRequest();
+            }
+
+            var existing = await _context.Suppliers.FindAsync(id);
+            if (existing == null)
+            {
+                return NotFound();
+            }
+
+            existing.Name = updatedSupplier.Name;
+            await _context.SaveChangesAsync();
+
             return NoContent();
         }
-             private static List<SupplierModel> Suppliers = new List<SupplierModel>();
-        
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSupplier(int id)
+        {
+            var existing = await _context.Suppliers.FindAsync(id);
+            if (existing == null)
+            {
+                return NotFound();
+            }
+
+            _context.Suppliers.Remove(existing);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }

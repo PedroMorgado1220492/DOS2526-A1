@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProductsAPI.Data;
 using ProductsAPI.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProductsAPI.Controllers
 {
@@ -9,81 +9,83 @@ namespace ProductsAPI.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
+        private readonly ApplicationDbContext _context;
 
-        private static readonly List<UsersModel> _users = new()
+        public UsersController(ApplicationDbContext context)
         {
-            new UsersModel
-            { 
-                Id = 1, Username = "jdoe", Email = "jdoe@email.com", 
-                Fullname = "John Doe", Role = "User",
-                Sales = new List<SalesModel>() 
-                {
-                    new SalesModel { Id = 1, Description = "First Sale", TotalPrice = 100 },
-                    new SalesModel { Id = 2, Description = "Second Sale", TotalPrice = 150 }
-                }
-            },
-            new UsersModel 
-            { 
-                Id = 2, Username = "admin", Email = "admin@email.com",
-                Fullname = "Administrator", Role = "Admin" ,
-                Sales = new List<SalesModel>() 
-                {
-                    new SalesModel { Id = 1, Description = "First Sale", TotalPrice = 100.00 },
-                    new SalesModel { Id = 2, Description = "Second Sale", TotalPrice = 150.50 }
-                }
-            }
-        };
+            _context = context;
+        }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UsersModel>> GetAll()
+        public async Task<ActionResult<IEnumerable<UsersModel>>> GetAll()
         {
-            return Ok(_users);
+            var users = await _context.Users
+                .Include(u => u.Sales)
+                .ThenInclude(s => s.Products)
+                .ToListAsync();
+
+            return Ok(users);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<UsersModel> GetById(int id)
+        public async Task<ActionResult<UsersModel>> GetById(int id)
         {
-            var user = _users.FirstOrDefault(u => u.Id == id);
+            var user = await _context.Users
+                .Include(u => u.Sales)
+                .ThenInclude(s => s.Products)
+                .FirstOrDefaultAsync(u => u.Id == id);
+
             if (user == null)
+            {
                 return NotFound();
-            
+            }
+
             return Ok(user);
         }
 
         [HttpPost]
-        public ActionResult<UsersModel> Create(UsersModel user)
+        public async Task<ActionResult<UsersModel>> Create(UsersModel user)
         {
-            user.Id = _users.Any() ? _users.Max(u => u.Id) + 1 : 1;
-            _users.Add(user);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UsersModel updatedUser)
+        public async Task<IActionResult> Update(int id, UsersModel updatedUser)
         {
-            var existing = _users.FirstOrDefault(u => u.Id == id);
+            if (id != updatedUser.Id)
+            {
+                return BadRequest();
+            }
+
+            var existing = await _context.Users.FindAsync(id);
             if (existing == null)
+            {
                 return NotFound();
+            }
 
             existing.Username = updatedUser.Username;
             existing.Email = updatedUser.Email;
             existing.Fullname = updatedUser.Fullname;
             existing.Role = updatedUser.Role;
-            existing.Sales = updatedUser.Sales;
 
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var existing = _users.FirstOrDefault(u => u.Id == id);
+            var existing = await _context.Users.FindAsync(id);
             if (existing == null)
+            {
                 return NotFound();
+            }
 
-            _users.Remove(existing);
+            _context.Users.Remove(existing);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
-        private static List<UsersModel> Users = new List<UsersModel>();
     }
 }
