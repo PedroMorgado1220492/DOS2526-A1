@@ -1,0 +1,10 @@
+bin/
+obj/
+.git/
+.vs/
+.idea/
+**/*.user
+*.db
+docker-compose*
+Dockerfile
+*.md

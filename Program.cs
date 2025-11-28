@@ -1,15 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using ProductsAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona serviços ao container
-builder.Services.AddControllers();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? @"Server=host.docker.internal,1433;Database=ProductsDB;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
 
-// Swagger / OpenAPI (para testar endpoints no navegador)
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Middleware (pipeline de execução)
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -17,7 +22,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection(); // opcional
 app.UseRouting();
 app.UseAuthorization();
 

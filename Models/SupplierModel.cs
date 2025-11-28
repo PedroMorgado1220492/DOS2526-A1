@@ -1,6 +1,4 @@
-using ProductsAPI.Models;
-
-namespace ProductsAPI.SupplierModel
+namespace ProductsAPI.Models
 {
     //Suplier Model
     public class SupplierModel

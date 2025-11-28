@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProductsAPI.Data;
 using ProductsAPI.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProductsAPI.Controllers
 {
@@ -9,62 +9,110 @@ namespace ProductsAPI.Controllers
     [Route("api/[controller]")]
     public class SalesController : ControllerBase
     {
-        // Simulação de uma base de dados em memória
-        private static List<SalesModel> sales = new List<SalesModel>();
+        private readonly ApplicationDbContext _context;
 
-        // GET: api/sales
-        [HttpGet]
-        public ActionResult<IEnumerable<SalesModel>> GetSales()
+        public SalesController(ApplicationDbContext context)
         {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SalesModel>>> GetSales()
+        {
+            var sales = await _context.Sales
+                .Include(s => s.Products)
+                .Include(s => s.User)
+                .ToListAsync();
+
             return Ok(sales);
         }
 
-        // GET: api/sales/{id}
         [HttpGet("{id}")]
-        public ActionResult<SalesModel> GetSale(int id)
+        public async Task<ActionResult<SalesModel>> GetSale(int id)
         {
-            var sale = sales.FirstOrDefault(s => s.Id == id);
+            var sale = await _context.Sales
+                .Include(s => s.Products)
+                .Include(s => s.User)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
             if (sale == null)
-                return NotFound($"Sale with ID {id} not found.");
-            
+            {
+                return NotFound();
+            }
+
             return Ok(sale);
         }
 
-        // POST: api/sales
         [HttpPost]
-        public ActionResult<SalesModel> CreateSale([FromBody] SalesModel sale)
+        public async Task<ActionResult<SalesModel>> CreateSale([FromBody] SalesModel sale)
         {
-            sale.Id = sales.Count > 0 ? sales.Max(s => s.Id) + 1 : 1;
-            sales.Add(sale);
+            if (sale.Products != null && sale.Products.Any())
+            {
+                var productIds = sale.Products.Select(p => p.Id).ToList();
+                var products = await _context.Products
+                    .Where(p => productIds.Contains(p.Id))
+                    .ToListAsync();
+
+                sale.Products = products;
+            }
+
+            _context.Sales.Add(sale);
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetSale), new { id = sale.Id }, sale);
         }
 
-        // PUT: api/sales/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateSale(int id, [FromBody] SalesModel updatedSale)
+        public async Task<IActionResult> UpdateSale(int id, [FromBody] SalesModel updatedSale)
         {
-            var sale = sales.FirstOrDefault(s => s.Id == id);
+            if (id != updatedSale.Id)
+            {
+                return BadRequest();
+            }
+
+            var sale = await _context.Sales
+                .Include(s => s.Products)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
             if (sale == null)
-                return NotFound($"Sale with ID {id} not found.");
+            {
+                return NotFound();
+            }
 
             sale.Description = updatedSale.Description;
             sale.TotalPrice = updatedSale.TotalPrice;
-            sale.Products = updatedSale.Products;
+            sale.UserId = updatedSale.UserId;
 
+            sale.Products.Clear();
+            if (updatedSale.Products != null && updatedSale.Products.Any())
+            {
+                var productIds = updatedSale.Products.Select(p => p.Id).ToList();
+                var products = await _context.Products
+                    .Where(p => productIds.Contains(p.Id))
+                    .ToListAsync();
+
+                foreach (var product in products)
+                {
+                    sale.Products.Add(product);
+                }
+            }
+
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        // DELETE: api/sales/{id}
         [HttpDelete("{id}")]
-        public ActionResult DeleteSale(int id)
+        public async Task<IActionResult> DeleteSale(int id)
         {
-            var sale = sales.FirstOrDefault(s => s.Id == id);
+            var sale = await _context.Sales.FindAsync(id);
             if (sale == null)
-                return NotFound($"Sale with ID {id} not found.");
+            {
+                return NotFound();
+            }
 
-            sales.Remove(sale);
+            _context.Sales.Remove(sale);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
-        private static List<SalesModel> Sales = new List<SalesModel>();
     }
 }
