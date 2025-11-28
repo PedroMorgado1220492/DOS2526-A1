@@ -4,7 +4,11 @@ using ProductsAPI.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+<<<<<<< HEAD
     ?? @"Server=host.docker.internal,1433;Database=ProductsDB;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
+=======
+    ?? @"Server=localhost,1433;Database=ProductsDB;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
+>>>>>>> main
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
