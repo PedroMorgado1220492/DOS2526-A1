@@ -16,11 +16,7 @@ namespace ProductsAPI.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-<<<<<<< HEAD
                 optionsBuilder.UseSqlServer(@"Server=host.docker.internal,1433;Database=ProductsDB;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;");
-=======
-                optionsBuilder.UseSqlServer(@"Server=localhost,1433;Database=ProductsDB;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;");
->>>>>>> main
             }
         }
 

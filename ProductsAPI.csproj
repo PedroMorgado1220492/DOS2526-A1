@@ -7,18 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Program.cs" />
-    <Compile Include="Controllers/**/*.cs" />
-    <Compile Include="Models/**/*.cs" />
-    <Compile Include="Data/**/*.cs" />
-    <Compile Include="Migrations/**/*.cs" />
-=======
     <Compile Remove="ProductsController.Tests/**/*.cs" />
     <Compile Remove="SalesController.Test/**/*.cs" />
     <Compile Remove="SupplierController.Test/**/*.cs" />
     <Compile Remove="UserController.Tests/**/*.cs" />
->>>>>>> main
   </ItemGroup>
 
   <ItemGroup>
@@ -28,10 +20,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-<<<<<<< HEAD
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.10" />
-=======
->>>>>>> main
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
   </ItemGroup>
 
