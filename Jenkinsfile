@@ -12,8 +12,11 @@ pipeline {
         DOTNET_SKIP_FIRST_TIME_EXPERIENCE = '1'
         IMAGE_NAME = 'products-api'
         IMAGE_TAG = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
-        COMPOSE_FILE = 'docker-compose.app.yaml'
-        COMPOSE_PROJECT_NAME = "products-${env.BRANCH_NAME}"
+        USE_ARGOCD = 'true'
+        HELM_APP_CHART = 'helm/app'
+        HELM_RELEASE_NAME = 'products-api'
+        HELM_VALUES_STAGING = 'helm/app/values-staging.yaml'
+        HELM_VALUES_PROD = 'helm/app/values-prod.yaml'
     }
 
     options {
@@ -74,24 +77,47 @@ pipeline {
             }
         }
 
-        stage('Deploy to Dev') {
+        stage('Deploy to Staging (Helm)') {
             when {
-                branch 'development'
+                allOf {
+                    branch 'development'
+                    expression { env.USE_ARGOCD != 'true' }
+                }
             }
             steps {
                 sh '''
-                    docker compose -f ${COMPOSE_FILE} up -d
+                    helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_APP_CHART} \
+                      -f ${HELM_VALUES_STAGING} \
+                      --namespace products-staging \
+                      --create-namespace
                 '''
             }
         }
 
-        stage('Deploy to Prod') {
+        stage('Deploy to Prod (Helm)') {
             when {
-                branch 'main'
+                allOf {
+                    branch 'main'
+                    expression { env.USE_ARGOCD != 'true' }
+                }
             }
             steps {
                 sh '''
-                    docker compose -f ${COMPOSE_FILE} up -d
+                    helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_APP_CHART} \
+                      -f ${HELM_VALUES_PROD} \
+                      --namespace products-prod \
+                      --create-namespace
+                '''
+            }
+        }
+
+        stage('Deploy via ArgoCD') {
+            when {
+                expression { env.USE_ARGOCD == 'true' }
+            }
+            steps {
+                sh '''
+                    echo "ArgoCD enabled: build image only. Deployment handled by GitOps."
                 '''
             }
         }

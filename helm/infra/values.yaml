@@ -1,0 +1,55 @@
+namespace:
+  create: true
+  name: platform-staging
+
+portainer:
+  enabled: true
+  image: portainer/portainer-ce:latest
+  service:
+    type: ClusterIP
+    port: 9443
+  persistence:
+    size: 2Gi
+    storageClassName: ""
+
+jenkins:
+  enabled: true
+  image: jenkins/jenkins:lts-jdk17
+  service:
+    type: ClusterIP
+    port: 8080
+    agentPort: 50000
+  persistence:
+    size: 5Gi
+    storageClassName: ""
+
+sonarqube:
+  enabled: true
+  image: sonarqube:lts
+  service:
+    type: ClusterIP
+    port: 9000
+  persistence:
+    dataSize: 5Gi
+    extensionsSize: 2Gi
+    logsSize: 2Gi
+    storageClassName: ""
+  sysctls:
+    vmMaxMapCount: "262144"
+
+argocd:
+  enabled: true
+  namespace: argocd
+  applications:
+    - name: products-api
+      repoURL: https://example.com/your-git-repo.git
+      targetRevision: main
+      path: helm/app
+      destinationNamespace: products-prod
+      valuesFile: values-prod.yaml
+    - name: platform-infra
+      repoURL: https://example.com/your-git-repo.git
+      targetRevision: main
+      path: helm/infra
+      destinationNamespace: platform-prod
+      valuesFile: values-prod.yaml

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "products-api.fullname" . }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "products-api.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.deployment.containerPort }}
+      {{- if .Values.service.nodePort }}
+      nodePort: {{ .Values.service.nodePort }}
+      {{- end }}
+  selector:
+    app.kubernetes.io/name: {{ include "products-api.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

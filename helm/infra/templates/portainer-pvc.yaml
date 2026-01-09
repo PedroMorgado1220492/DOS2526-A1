@@ -1,0 +1,18 @@
+{{- if and .Values.portainer.enabled .Values.portainer.persistence.size -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-portainer
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.portainer.persistence.size }}
+  {{- if .Values.portainer.persistence.storageClassName }}
+  storageClassName: {{ .Values.portainer.persistence.storageClassName }}
+  {{- end }}
+{{- end -}}

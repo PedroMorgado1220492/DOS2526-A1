@@ -1,0 +1,17 @@
+{{- if .Values.sonarqube.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-sonarqube
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.sonarqube.service.type }}
+  ports:
+    - port: {{ .Values.sonarqube.service.port }}
+      targetPort: {{ .Values.sonarqube.service.port }}
+  selector:
+    app.kubernetes.io/name: {{ include "platform-infra.name" . }}-sonarqube
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}

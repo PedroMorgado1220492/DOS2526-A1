@@ -1,0 +1,30 @@
+namespace:
+  create: true
+  name: products-staging
+
+image:
+  repository: products-api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+  nodePort: null
+
+deployment:
+  replicas: 1
+  containerPort: 8080
+
+env:
+  aspnetcoreUrls: http://+:8080
+
+database:
+  enabled: true
+  image: mcr.microsoft.com/mssql/server:2022-latest
+  port: 1433
+  saPassword: A_Sua_Password
+  persistence:
+    enabled: true
+    size: 2Gi
+    storageClassName: ""

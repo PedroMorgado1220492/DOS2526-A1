@@ -1,4 +1,5 @@
 .idea/workspace.xml
-# Build outputs that keep reappearing
-obj/Debug/net9.0/ProductsAPI.AssemblyInfo.cs
-obj/Debug/net9.0/ProductsAPI.AssemblyInfoInputs.cache
+.vs/
+bin/
+obj/
+TestResults/

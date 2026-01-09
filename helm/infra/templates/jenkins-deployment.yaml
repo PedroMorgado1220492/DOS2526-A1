@@ -1,0 +1,34 @@
+{{- if .Values.jenkins.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-jenkins
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "platform-infra.name" . }}-jenkins
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "platform-infra.name" . }}-jenkins
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: jenkins
+          image: {{ .Values.jenkins.image }}
+          ports:
+            - containerPort: {{ .Values.jenkins.service.port }}
+            - containerPort: {{ .Values.jenkins.service.agentPort }}
+          volumeMounts:
+            - name: jenkins-home
+              mountPath: /var/jenkins_home
+      volumes:
+        - name: jenkins-home
+          persistentVolumeClaim:
+            claimName: {{ include "platform-infra.fullname" . }}-jenkins
+{{- end -}}

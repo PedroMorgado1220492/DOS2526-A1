@@ -1,0 +1,17 @@
+namespace:
+  name: platform-staging
+
+argocd:
+  applications:
+    - name: products-api
+      repoURL: https://example.com/your-git-repo.git
+      targetRevision: main
+      path: helm/app
+      destinationNamespace: products-staging
+      valuesFile: values-staging.yaml
+    - name: platform-infra
+      repoURL: https://example.com/your-git-repo.git
+      targetRevision: main
+      path: helm/infra
+      destinationNamespace: platform-staging
+      valuesFile: values-staging.yaml
