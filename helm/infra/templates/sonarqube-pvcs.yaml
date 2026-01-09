@@ -1,0 +1,52 @@
+{{- if .Values.sonarqube.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-sonarqube-data
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.sonarqube.persistence.dataSize }}
+  {{- if .Values.sonarqube.persistence.storageClassName }}
+  storageClassName: {{ .Values.sonarqube.persistence.storageClassName }}
+  {{- end }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-sonarqube-extensions
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.sonarqube.persistence.extensionsSize }}
+  {{- if .Values.sonarqube.persistence.storageClassName }}
+  storageClassName: {{ .Values.sonarqube.persistence.storageClassName }}
+  {{- end }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-sonarqube-logs
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.sonarqube.persistence.logsSize }}
+  {{- if .Values.sonarqube.persistence.storageClassName }}
+  storageClassName: {{ .Values.sonarqube.persistence.storageClassName }}
+  {{- end }}
+{{- end -}}

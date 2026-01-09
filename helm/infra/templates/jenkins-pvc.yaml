@@ -1,0 +1,18 @@
+{{- if and .Values.jenkins.enabled .Values.jenkins.persistence.size -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-jenkins
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.jenkins.persistence.size }}
+  {{- if .Values.jenkins.persistence.storageClassName }}
+  storageClassName: {{ .Values.jenkins.persistence.storageClassName }}
+  {{- end }}
+{{- end -}}

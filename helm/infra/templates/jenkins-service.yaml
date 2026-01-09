@@ -1,0 +1,21 @@
+{{- if .Values.jenkins.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-jenkins
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.jenkins.service.type }}
+  ports:
+    - port: {{ .Values.jenkins.service.port }}
+      targetPort: {{ .Values.jenkins.service.port }}
+      name: http
+    - port: {{ .Values.jenkins.service.agentPort }}
+      targetPort: {{ .Values.jenkins.service.agentPort }}
+      name: agent
+  selector:
+    app.kubernetes.io/name: {{ include "platform-infra.name" . }}-jenkins
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}

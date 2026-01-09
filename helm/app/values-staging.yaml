@@ -1,0 +1,5 @@
+namespace:
+  name: products-staging
+
+deployment:
+  replicas: 1

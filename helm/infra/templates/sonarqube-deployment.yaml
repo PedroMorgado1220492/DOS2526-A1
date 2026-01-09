@@ -1,0 +1,50 @@
+{{- if .Values.sonarqube.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "platform-infra.fullname" . }}-sonarqube
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    {{- include "platform-infra.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "platform-infra.name" . }}-sonarqube
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "platform-infra.name" . }}-sonarqube
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      securityContext:
+        sysctls:
+          - name: vm.max_map_count
+            value: "{{ .Values.sonarqube.sysctls.vmMaxMapCount }}"
+      containers:
+        - name: sonarqube
+          image: {{ .Values.sonarqube.image }}
+          ports:
+            - containerPort: {{ .Values.sonarqube.service.port }}
+          env:
+            - name: SONAR_ES_BOOTSTRAP_CHECKS_DISABLE
+              value: "true"
+          volumeMounts:
+            - name: sonarqube-data
+              mountPath: /opt/sonarqube/data
+            - name: sonarqube-extensions
+              mountPath: /opt/sonarqube/extensions
+            - name: sonarqube-logs
+              mountPath: /opt/sonarqube/logs
+      volumes:
+        - name: sonarqube-data
+          persistentVolumeClaim:
+            claimName: {{ include "platform-infra.fullname" . }}-sonarqube-data
+        - name: sonarqube-extensions
+          persistentVolumeClaim:
+            claimName: {{ include "platform-infra.fullname" . }}-sonarqube-extensions
+        - name: sonarqube-logs
+          persistentVolumeClaim:
+            claimName: {{ include "platform-infra.fullname" . }}-sonarqube-logs
+{{- end -}}
